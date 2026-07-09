@@ -1,0 +1,8 @@
+CREATE TABLE mini_estilo.colors (
+    id SERIAL PRIMARY KEY,
+    code VARCHAR(20) NOT NULL UNIQUE,
+    name VARCHAR(50) NOT NULL,
+    hex_code VARCHAR(7),
+    is_active BOOLEAN DEFAULT TRUE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
