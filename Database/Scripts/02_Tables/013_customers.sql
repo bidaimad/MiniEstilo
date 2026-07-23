@@ -1,19 +1,34 @@
-CREATE TABLE mini_estilo.customers (
+CREATE TABLE mini_estilo.sales (
     id SERIAL PRIMARY KEY,
 
-    code VARCHAR(20) UNIQUE NOT NULL,
-    first_name VARCHAR(100) NOT NULL,
-    last_name VARCHAR(100),
+    invoice_number VARCHAR(30) NOT NULL UNIQUE,
 
-    phone VARCHAR(20) UNIQUE,
-    email VARCHAR(100),
+    branch_id INTEGER NOT NULL,
+    customer_id INTEGER,
+    user_id INTEGER NOT NULL,
 
-    address TEXT,
-    city VARCHAR(100),
+    sale_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
-    loyalty_points INTEGER DEFAULT 0,
+    subtotal NUMERIC(12,2) NOT NULL DEFAULT 0,
+    discount NUMERIC(12,2) NOT NULL DEFAULT 0,
+    tax NUMERIC(12,2) NOT NULL DEFAULT 0,
+    total NUMERIC(12,2) NOT NULL DEFAULT 0,
 
-    is_active BOOLEAN DEFAULT TRUE,
+    payment_status VARCHAR(20) NOT NULL DEFAULT 'PENDING',
 
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    notes TEXT,
+
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT fk_sales_branch
+        FOREIGN KEY (branch_id)
+        REFERENCES mini_estilo.branches(id),
+
+    CONSTRAINT fk_sales_customer
+        FOREIGN KEY (customer_id)
+        REFERENCES mini_estilo.customers(id),
+
+    CONSTRAINT fk_sales_user
+        FOREIGN KEY (user_id)
+        REFERENCES mini_estilo.users(id)
 );

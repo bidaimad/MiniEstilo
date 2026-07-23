@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="../MiniEstilo.Business/MiniEstilo.Business.csproj" />
+  <Project Path="../MiniEstilo.Data/MiniEstilo.Data.csproj" />
+  <Project Path="../MiniEstilo.Models/MiniEstilo.Models.csproj" />
+  <Project Path="MiniEstilo.UI.csproj" />
+</Solution>
